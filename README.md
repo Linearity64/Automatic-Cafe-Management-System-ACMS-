@@ -6,25 +6,16 @@ ACMS is an experimental IOT-based system for managing automation in cafe setting
 - An admin panel featuring a Dashboard for easy almost real-time monitoring, a Kitchen page for showing orders to the kitchen staff, and a Cashier page for ease of payment.
 
 ## To-Do List
-<details>
-  <summary> Step 1: Complete building and initial commit of necessary components </summary>
+Step 1: Complete building and initial commit of necessary components
   
 - [x] Commit Arduino code
 - [ ] Commit Customer Page (acms)
 - [ ] Commit Staff Page (acms-staff)
 - [ ] Commit Database
 - [ ] Commit other necessary details (schematic, building plan, board design, etc...)
-</details>
 
-<details>
-  <summary> Step 2: Complete main features of the system </summary>
-  
-  To-be determined later...
-</details>
+Step 2: Complete main features of the system
+- To-be determined later...
 
-<details>
-  <summary> Step 3: Iron out bugs </summary>
-  
-  To-be determined later...
-    
-</details>
+Step 3: Iron out bugs
+- To-be determined later...
