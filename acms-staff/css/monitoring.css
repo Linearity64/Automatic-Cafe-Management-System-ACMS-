@@ -1,0 +1,92 @@
+.panel1{
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 1;
+	grid-row-end: 2;
+	height: 400px;
+}
+
+.panel2{
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+.panel3{
+	grid-column-start: 3;
+	grid-column-end: 4;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+.panel4{
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.panel5{
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	height: 400px;
+}
+
+.panel6{
+	grid-column-start: 3;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.container{
+	margin: 10px;
+	display: grid;
+	grid-gap: 5px;
+	grid-template-columns: auto auto auto;
+}
+
+.panelHeader{
+	font-family: Helvetica;
+	font-size: 16px;
+	color: white;
+	padding-bottom: 10px;
+}
+
+.panelMain{
+	font-family: Helvetica;
+	font-size: 14px;
+	color: white;
+	font-weight: normal;
+}
+
+.panelFooter{
+	font-family: Helvetica;
+	font-size: 14px;
+	font-weight: lighter;
+	color: white;
+}
+
+.panelButton{
+	font-family: Helvetica;
+	font-size: 14px;
+	font-weight: lighter;
+	color: white;
+	text-decoration: none;
+	border: 2px solid white;
+	padding: 5px 20px;
+	margin: 0;
+}
+
+.panelSectionMain{
+	height: 320px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.panelSectionFooter{
+	margin-top: 20px;
+}
