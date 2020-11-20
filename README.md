@@ -1,6 +1,6 @@
 # Automatic Cafe Management System (ACMS)
 
-ACMS is an experimental IOT-based system for managing automation in cafe settings. It features:
+ACMS is an experimental IOT-based system for managing automation in cafe settings. This system features:
 - An Arduino based 4WD mobile robot with WiFi connectivity.
 - A menu/ordering page for customers
 - An admin panel featuring a Dashboard for easy almost real-time monitoring, a Kitchen page for showing orders to the kitchen staff, and a Cashier page for ease of payment.
