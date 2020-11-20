@@ -1,0 +1,80 @@
+<html>
+
+	<head>
+		<title> Admin </title>
+		<link rel="stylesheet" href="css/admin-style.css">
+		<link rel="stylesheet" href="css/monitoring.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		
+		<!--Fixed Sidebar-->
+		<div class= "sideBar">
+			
+			<div class="profile">
+				<li> <a href="#profile"> <img src="src/icon1.png" class="picon"> </img> <span class="sideBarText"> Admin </span> </a> </li>
+			</div>		
+			
+			<hr>
+			
+			<ul>
+				<li> <a href="#home" class="fa fa-home"> <span class="sideBarText"> Home </span> </a> </li>
+				<li> <a onClick = "openDropdown()" class="fa fa-area-chart"> <span class="sideBarText"> Monitoring </span> </a> </li>
+				<div class="dropdownContainer" id="dropdownContainer">
+					<a href="#"> Office 1 </a>
+					<a href="#"> Office 2 </a>
+					<a href="#"> Pantry 1 </a>
+					<a href="#"> Pantry 2 </a>
+					<a href="#"> Storage 1 </a>
+					<a href="#"> Storage 2 </a>
+				</div>
+				<li> <a href="#setting" class="fa fa-wrench"> <span class="sideBarText"> Settings </span> </a> </li>
+				<li> <a href="#contacts" class="fa fa-address-book"> <span class="sideBarText"> Contacts </span> </a> </li>
+			</ul>
+			
+			<ul class="logout">
+				<li> <a href="#logout" class="fa fa-power-off"> <span class="sideBarText"> Log Out </span> </a> </li>
+			</ul>
+
+		</div>
+
+		<main>
+			<header>
+				<h1> IoT Monitoring & Control System </h1>
+			</header>
+
+			<div class="container">
+				
+			</div>
+		</main>
+
+
+	<script>
+		function openDropdown(){
+			var dropdown = document.getElementById("dropdownContainer");
+			if (dropdown.style.display === "none"){
+				dropdown.style.display = "block";
+			} else {
+				dropdown.style.display = "none";
+			}
+		}	
+		
+		$(document).ready(function(){
+			$(".container").load("panels.txt");
+		});
+
+	</script>
+
+
+	</body>
+
+
+
+
+
+
+
+
+</html>
