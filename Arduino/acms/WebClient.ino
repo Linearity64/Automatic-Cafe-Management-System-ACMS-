@@ -11,21 +11,23 @@ void initWiFiModule() {
 
   // Check for ESP-01 Module, don't continue if not found
   if (WiFi.status() == WL_NO_SHIELD) {
-    Serial.println("ESP-01 is not found");
+    Serial.println("[DEBUG] ESP-01 is not found");
     while (true);
   }
 
   // Attempt to connect to WiFi
   while (status != WL_CONNECTED) {
-    Serial.print("Attempting to connect... SSID : ");
+    Serial.print("[DEBUG] Attempting to connect... SSID : ");
     Serial.println(ssid);
     status = WiFi.begin(ssid, pass);
   }
 
+  /*
   // Display successful result
-  Serial.print("Connected to SSID : ");
+  Serial.print("[DEBUG] Connected to SSID : ");
   Serial.println(ssid);
-
+  */
+  
 }
 
 void httpRequest() {
@@ -33,10 +35,10 @@ void httpRequest() {
   // Clean up serial monitor and close any connection before sending request
   Serial.println();
   client.stop();
+  yield();
 
   // Check for successful connection
   if (client.connect(server, port)) {
-    Serial.print("Connecting...");
 
     // GET REQUEST
     client.println(F("GET /asciilogo.txt HTTP/1.1"));
@@ -48,7 +50,7 @@ void httpRequest() {
     // Note last refresh time
     lastPostTime = millis();
   } else {
-    Serial.println("Connection failed");
+    Serial.println("[DEBUG] Connection failed");
   }
 
 }
@@ -59,20 +61,24 @@ int scrape() {
   char bufferArray[MAX_BUFFER_SIZE] = {0};
 
   // Find identifier character
-  if (client.find(identifier)) {
+  if (!client.find(identifier)) {
+    Serial.println("[DEBUG] Identifier not found");
+  } else {
+    Serial.println("[DEBUG] Identifier found");
 
-    // Find the first identifier, dump buffer, and read until end indentifier
+    // Read until the end identifier
     client.readBytesUntil(identifier, bufferArray, MAX_BUFFER_SIZE);
-    client.readBytesUntil(identifier, bufferArray, MAX_BUFFER_SIZE);
+
+    /*
+      Serial.println("BUFFER");
+      for (int i = 0; i < MAX_BUFFER_SIZE; i++) {
+      Serial.print(bufferArray[i]);
+      }
+    */
 
     for (int i = 0; i < SCRAPED_ARRAY_SIZE; i++) {
       scrapedArray[i] = bufferArray[i];
     }
-
-    return scrapedArray[0];
-    
-  } else {
-    return 0;
   }
 
 }
