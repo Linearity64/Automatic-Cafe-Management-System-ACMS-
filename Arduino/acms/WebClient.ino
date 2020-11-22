@@ -23,11 +23,11 @@ void initWiFiModule() {
   }
 
   /*
-  // Display successful result
-  Serial.print("[DEBUG] Connected to SSID : ");
-  Serial.println(ssid);
+    // Display successful result
+    Serial.print("[DEBUG] Connected to SSID : ");
+    Serial.println(ssid);
   */
-  
+
 }
 
 void httpRequest() {
@@ -41,7 +41,7 @@ void httpRequest() {
   if (client.connect(server, port)) {
 
     // GET REQUEST
-    client.println(F("GET /asciilogo.txt HTTP/1.1"));
+    client.println(F("GET /arduino.php?status=idle&destination=0 HTTP/1.1"));
     client.print(F("Host: "));
     client.println(server);
     client.println("Connection: close");
@@ -81,4 +81,48 @@ int scrape() {
     }
   }
 
+}
+
+void sendResponse(int _table) {
+  Serial.println("[DEBUG] Sending acknowledgement response...");
+  client.stop();
+  yield();
+
+  // Check for successful connection
+  if (client.connect(server, port)) {
+
+    // GET REQUEST
+    client.print(F("GET /arduino.php?status=moving&destination="));
+    client.print(_table);
+    client.println(F(" HTTP/1.1"));
+    client.print(F("Host: "));
+    client.println(server);
+    client.println("Connection: close");
+    client.println();
+
+    // Note last refresh time
+    lastPostTime = millis();
+  } else {
+    Serial.println("[DEBUG] Connection failed");
+  }
+  Serial.println("[DEBUG] SENT");
+}
+
+int interpretScrapedArray() {
+  Serial.println("[DEBUG] Interpreting data received...");
+  table = scrapedArray[0] - '0';
+  path[SCRAPED_ARRAY_SIZE];
+  for (int i = 1; i < SCRAPED_ARRAY_SIZE; i++) {
+    path[i - 1] = scrapedArray[i];
+  }
+
+  Serial.print("[DEBUG] Data interpreted, target table: ");
+  Serial.print(table);
+  Serial.print(", path to target: ");
+  for (int i = 0; i < SCRAPED_ARRAY_SIZE - 1; i++) {
+    Serial.print(path[i]);
+  }
+  Serial.println();
+
+  return table;
 }

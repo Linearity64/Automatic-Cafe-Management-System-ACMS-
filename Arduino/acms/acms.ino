@@ -32,18 +32,16 @@ void loop() {
     // REFRESH CONNECTION
     if (millis() - lastPostTime > postInterval) {
       httpRequest();
-      
+
       // If data is found after scraping, exit idle mode
       scrape();
-      if (scrapedArray[0] != 0) {
+      if (scrapedArray[0] != '0' && scrapedArray[0] != NULL) {
         idle = false;
       } else {
         idle = true;
-      }
-
-      for (int i = 0; i < SCRAPED_ARRAY_SIZE; i++) {
-        Serial.print(scrapedArray[i]);
-        scrapedArray[i] = 0;
+        for (int i = 0; i < SCRAPED_ARRAY_SIZE; i++) {
+          scrapedArray[i] = 0;
+        }
       }
 
       Serial.println();
@@ -52,12 +50,11 @@ void loop() {
 
   } else {
 
-    // SEND ACKNOWLEDGEMENT
-    // WAIT FOR WEIGHT SENSOR
-    // START MOVE ROUTINE
-    // WAIT FOR WEIGHT SENSOR
-    // START MOVE ROUTINE
-    // RESET VARIABLES BACK TO IDLE
+    sendResponse(interpretScrapedArray());
+    weightSensor();
+    moveRobot();
+    weightSensor();
+    moveRobot();
 
     Serial.println("[DEBUG] Turning back to idle...");
     idle = true;
